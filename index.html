@@ -36,6 +36,13 @@
 
 
 
+function fb_logout(){
+	FB.logout(function(response) {
+  	alert('You have successfuly logged out!')
+  	$('#loginButton').show();
+    $('#logout_btn').hide();
+});
+}
 
 
   function fb_login(){
@@ -95,7 +102,7 @@
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
-            <li><a href="#" id="logout_btn">Logout</a></li>
+            <li><a href="javascript:void(0)" id="logout_btn" style="display:none;">Logout</a></li>
           </ul>
         </div><!--/.nav-collapse -->
       </div>
@@ -208,8 +215,12 @@
     // request, and the time the access token 
     // and signed request each expire
     alert('connected');
+    $('#loginButton').hide();
+    $('#logout_btn').show();
+
     var uid = response.authResponse.userID;
     var accessToken = response.authResponse.accessToken;
+
   } else if (response.status === 'not_authorized') {
     // the user is logged in to Facebook, 
     // but has not authenticated your app
