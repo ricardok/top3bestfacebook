@@ -35,9 +35,6 @@
   };
 
   function fb_login(){
-
-  	alert('a');
-
     FB.login(function(response) {
 
         if (response.authResponse) {
@@ -45,11 +42,12 @@
             //console.log(response); // dump complete info
             access_token = response.authResponse.accessToken; //get access token
             user_id = response.authResponse.userID; //get FB UID
-            console.log('userid: 'user_id);
-            console.log('access_token: 'access_token);
+            console.log('userid: ' + user_id);
+            console.log('access_token: ' + access_token);
 
             FB.api('/me', function(response) {
 
+                console.log('name: 'me.name);
           // you can store this data into your database             
             });
 
@@ -151,7 +149,7 @@
 										
 										<!-- Login button -->
 										<div class="form-group">
-											<button id="loginButton" type="button" onclick="fb_login();"><i class="fa fa-facebook-square fa-3"></i> Login using facebook</button>
+											<button id="loginButton" type="button" class="btn btn-primary" onclick="fb_login();"><i class="fa fa-facebook-square fa-3"></i> Login using facebook</button>
 										</div>
 									</form>
 								</div>
