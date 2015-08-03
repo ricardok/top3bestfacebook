@@ -47,7 +47,7 @@
 
             FB.api('/me', function(response) {
 
-                document.getElementById('fb_name').html('name: ' + response.name);
+                document.getElementById('fb_name').innerHTML = 'name: ' + response.name;
           // you can store this data into your database             
             });
 
