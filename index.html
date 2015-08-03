@@ -47,7 +47,7 @@
 
             FB.api('/me', function(response) {
 
-                console.log('name: ' + me.name);
+                document.getElementById('fb_name').html('name: ' + response.name);
           // you can store this data into your database             
             });
 
@@ -150,6 +150,7 @@
 										<!-- Login button -->
 										<div class="form-group">
 											<button id="loginButton" type="button" class="btn btn-primary" onclick="fb_login()"><i class="fa fa-facebook-square fa-3"></i> Login using facebook</button>
+											<span id="fb_name"></span>
 										</div>
 									</form>
 								</div>
