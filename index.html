@@ -80,6 +80,9 @@ function check_login_status(){
             console.log('userid: ' + user_id);
             console.log('access_token: ' + access_token);
 
+            $('#loginButton').hide();
+    		$('#logout_btn').show();
+
             FB.api('/me', function(response) {
 
                 document.getElementById('fb_name').innerHTML = 'name: ' + response.name;
