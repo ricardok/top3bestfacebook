@@ -222,7 +222,7 @@ function check_login_status(){
 
 		    $(window).load(function () {
 		        setTimeout(function(){
-		        	//Code here
+		        	check_login_status();
 		        	//fadeOut preloader
 		            $('#preloader').fadeOut('slow', function () {  
 		            });
@@ -230,7 +230,7 @@ function check_login_status(){
 
 		    }); 
 			
-		check_login_status();
+		
 			
 			
 		});
