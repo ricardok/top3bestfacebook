@@ -166,9 +166,9 @@ function check_login_status(){
 								</div>
 								
 								<div class="panel-body">
-								<div class="alert alert-danger alert-dismissible alertUserInvalid" role="alert">INVALID USERNAME OR PASSWORD</div>
-									<form id="loginForm" role="form" action="/MicroBlog/user/LoginUser" method="POST">
-										<!-- Username -->
+								
+									<form id="loginForm" role="form" method="POST">
+										<!---
 										<div class="form-group">
 											<label for="username" class="control-label">Username</label>
 											<div>
@@ -176,16 +176,17 @@ function check_login_status(){
 											</div>
 										</div>
 										
-										<!-- Password -->
+
 										<div class="form-group">
 											<label for="password" class="control-label">Password</label>
 											<div>
 												<input type="password" name="password" class="form-control" id="password">
 											</div>
 										</div>
-										
+										--->
+
 										<!-- Login button -->
-										<div class="form-group">
+										<div class="form-group center-btn">
 											<button id="loginButton" type="button" class="btn btn-primary" onclick="fb_login()"><i class="fa fa-facebook-square fa-3"></i> Login using facebook</button>
 											<span id="fb_name"></span>
 										</div>
