@@ -337,6 +337,7 @@ label {
 		
 		.panel.panel-form .panel-heading p {
 			margin: 0;
+			font-size:18px;
 		}
 	
 		/* customizing title inside panel-heading */

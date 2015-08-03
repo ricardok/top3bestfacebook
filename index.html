@@ -11,133 +11,70 @@
 		
 		<!-- CSS style -->
 		<link rel="stylesheet" href="css/style.css"> 
-		
-		<!-- jQuery -->
-		<script src="js/jquery-2.1.1.min.js"></script>
-		
-		<!-- Bootstrap JS -->
-		<script src="js/bootstrap.min.js"></script>
-		
-		<script>
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 		
 
-		
-		$(document).ready(function() {
-			
-		    $(window).load(function () {
-		        setTimeout(function(){
-		        	//Authenticate Session before showing the page and after 2000ms show page or redirect.
-	        		$.ajax({
-	        	        url: "/MicroBlog/user/SessionAuth",
-	        	        type: 'GET',
-	        	        contentType: "application/json; charset=utf-8"
-	        	    	})
-	        			
-	        	    	.done(function (data) {
-	        	    		if(data.result == "success"){
-	        					//console.log("success");
-	        					// send user to the microblog if session was Authenticated
-	        					window.location.pathname = "/MicroBlog/microblog.html";
-	        	    		}
-	        	    	 })
-	        	    	 .fail( function (data) {
-	        	    		 console.log(data);
-	        	    	 });
-		        	//fadeOut preloader
-		            $('#preloader').fadeOut('slow', function () {  
-		            });
-		        },2000);
-
-		    }); 
-			
-			
-			$('#username').on('input', function() {
-				var input=$(this);
-				var is_username=input.val();
-				// if username is empty add invalid class
-				if(!is_username){
-					input.addClass("invalid");
-				}
-				else{
-					input.removeClass("invalid");
-				}
-			});
-			<!-- function called on user input -->
-			$('#password').on('input', function() {
-				var input=$(this);
-				var is_pass=input.val();
-				//if password is empty add invalid class
-				if(!is_pass){
-					input.addClass("invalid");
-				}
-				else{
-					input.removeClass("invalid");
-				}
-			});
-			
-			
-			<!-- after form submission validate inputs -->
-			$("#loginButton").click(function(event){
-				
-				var form_data=$("#loginForm").serializeArray(); // Get All HTML objects inside the form
-				var has_error=false;
-				
-				for (var input in form_data){ // loop over the objects
-					var element=$("#"+form_data[input]['name']); // concatinate # to the form input name to get the object
-					var invalid=element.hasClass("invalid");
-					if (invalid || !element.val() ){
-						element.addClass("invalid"); has_error=true;
-						}					
-				}
-				// if has_error true prevent from from submiting and show alert error message
-				if (has_error){
-					$('.alertUserInvalid').show(1000);
-					event.preventDefault(); // prevent form from sumbmitting
-				}
-				else{
-					//Make AJAX call with server
-					
-					$('.alertUserInvalid').hide();
-					var user = new Object();
-				    user.Username = $('#username').val();
-				    user.Password = $('#password').val();
-				    
-				    $.ajax({
-				        url: "/MicroBlog/user/LoginUser",
-				        type: 'POST',
-				        dataType: 'json',
-				        data: JSON.stringify(user),
-				        contentType: "application/json; charset=utf-8"
-				    	})
-						
-				    	.done(function (data) {
-				    		if(data.result == "success"){
-				    			// send user to microblog after hiding the error message
-				    			$('.alertUserInvalid').hide();
-								//console.log("success");
-								window.location.pathname = "/MicroBlog/microblog.html";
-				    		}
-				    		//if result not success show error message
-					        	else{ $('.alertUserInvalid').show(1000); console.log("Invalid user or password"); }
-				    	 })
-				    	 .fail( function (data) {
-				    		 console.log(data);
-				    	 });
-				    	
-				}
-			});
-			
-			
-			
-		});
-		
-		
-		</script>
 		
 		
 	</head>
 	
 	<body>
+
+
+	<script>
+  window.fbAsyncInit = function() {
+    FB.init({
+      appId      : '468115333349990',
+      oauth   : true,
+      status  : true, // check login status
+      cookie  : true, // enable cookies to allow the server to access the session
+      xfbml      : true,
+      version    : 'v2.4'
+    });
+  };
+
+  function fb_login(){
+    FB.login(function(response) {
+
+        if (response.authResponse) {
+            console.log('Welcome!  Fetching your information.... ');
+            //console.log(response); // dump complete info
+            access_token = response.authResponse.accessToken; //get access token
+            user_id = response.authResponse.userID; //get FB UID
+            console.log(user_id);
+            console.log(access_token);
+
+            FB.api('/me', function(response) {
+                user_email = response.email; //get user email
+                console.log(user_email);
+          // you can store this data into your database             
+            });
+
+        } else {
+            //user hit cancel button
+            console.log('User cancelled login or did not fully authorize.');
+
+        }
+    }, {
+        scope: 'publish_stream,email,user_posts,user_photos,user_events,user_tagged_places'
+    });
+}
+
+
+  (function(d, s, id){
+     var js, fjs = d.getElementsByTagName(s)[0];
+     if (d.getElementById(id)) {return;}
+     js = d.createElement(s); js.id = id;
+     js.src = "//connect.facebook.net/en_US/sdk.js";
+     fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+
+
+
 	<div id="preloader"></div>
 
 	 <!-- Fixed navbar -->
@@ -188,6 +125,7 @@
 								<!-- Form header -->
 								<div class="panel-heading">
 									<h2 class="title">Login using Facebook</h2>
+									<p>in order to find who's your best friends!!</p>
 								</div>
 								
 								<div class="panel-body">
@@ -211,7 +149,7 @@
 										
 										<!-- Login button -->
 										<div class="form-group">
-											<button id="loginButton" type="button" class="btn btn-primary">Login</button>
+											<button id="loginButton" type="button" class="btn btn-primary" onclick="fb_login();"><i class="fa fa-facebook-square fa-3"></i> Login using facebook</button>
 										</div>
 									</form>
 								</div>
@@ -232,4 +170,36 @@
 			</div>
 		</div>
 		
+
+		<!-- jQuery -->
+		<script src="js/jquery-2.1.1.min.js"></script>
+		
+		<!-- Bootstrap JS -->
+		<script src="js/bootstrap.min.js"></script>
+		
+		<script>
+		
+
+		
+		$(document).ready(function() {
+			
+		    $(window).load(function () {
+		        setTimeout(function(){
+		        	//Code here
+		        	//fadeOut preloader
+		            $('#preloader').fadeOut('slow', function () {  
+		            });
+		        },2000);
+
+		    }); 
+			
+			
+			
+			
+		});
+		
+		
+		</script>
+
+
 </body></html>
