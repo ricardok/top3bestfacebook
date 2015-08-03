@@ -42,12 +42,11 @@
             //console.log(response); // dump complete info
             access_token = response.authResponse.accessToken; //get access token
             user_id = response.authResponse.userID; //get FB UID
-            console.log(user_id);
-            console.log(access_token);
+            console.log('userid: 'user_id);
+            console.log('access_token: 'access_token);
 
             FB.api('/me', function(response) {
-                user_email = response.email; //get user email
-                console.log(user_email);
+
           // you can store this data into your database             
             });
 
@@ -57,7 +56,7 @@
 
         }
     }, {
-        scope: 'publish_actions,email,user_posts,user_photos,user_events,user_tagged_places'
+        scope: 'publish_actions,user_posts,user_photos,user_events,user_tagged_places'
     });
 }
 
