@@ -66,6 +66,7 @@ function calculate_tagged_users(users_list){
 						var fb_user = new User(response.data[i].tags.data[j].id,response.data[i].tags.data[j].name); // create new user
 						fb_user.addPoints(1); // add points to user
 						users_list.push(fb_user);
+						alert('a');
 						
 						}
 						else if(user_found.length == 1){
