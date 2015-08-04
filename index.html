@@ -48,11 +48,47 @@ User.prototype.addPoints = function(points){
 
 /* --------- User Class --------- */
 
+
+function calculate_tagged_users(users_list){
+
+	FB.api('me/photos?fields=tags{name,id}&type=uploaded', function(response) {
+				for(var i = 0; i< response.data.length; i++){
+					if(response.data[i].hasOwnProperty('tags')){
+
+						for(var j = 0; j< response.data.tags.data.length; j++){
+
+						var user_found = $.grep(users_list, function(e){
+						return e.id == response.data.tags.data[j].id;
+						});
+
+						if(user_found.length == 0){
+
+						var fb_user = new User(response.data.tags.data[j].id,response.data.tags.data[j].name); // create new user
+						fb_user.addPoints(1); // add points to user
+						users_list.push(fb_user);
+						
+						}
+						else if(user_found.length == 1){
+
+							user_found[0].addPoints(1); // add points to existing user
+
+						}
+
+						}
+
+					}
+				}           
+            });
+}
+
+
 function get_best_friends(){
 	// a function in which calls to another functions will be made in order to calculate points
 	var users_list = [];
 	var fb_user = new User('123','Jawad');
 	users_list.push(fb_user);
+
+	calculate_tagged_users(users_list);
 }
 
 
