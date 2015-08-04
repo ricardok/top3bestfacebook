@@ -98,6 +98,8 @@ function facebook_user_photos(callback){
             });
 }
 
+
+
 function calculate_tagged_users(users_list) {
 
     var fbPhotos = facebook_user_photos(function(response){
@@ -133,6 +135,8 @@ function calculate_tagged_users(users_list) {
 					}
 				}
 
+				return user_lists;
+
     });
 
 };
@@ -144,25 +148,9 @@ function get_best_friends(){
 	var fb_user = new User('123','Jawad');
 	users_list.push(fb_user);
 
-	calculate_tagged_users(users_list);
-
-
+	users_list = calculate_tagged_users(users_list);
 	console.log(users_list);
-		console.log(users_list);
-			console.log(users_list);
-				console.log(users_list);
-					console.log(users_list);
-						console.log(users_list);
-							console.log(users_list);
-								console.log(users_list);
-									console.log(users_list);
-										console.log(users_list);
-											console.log(users_list);
-												console.log(users_list);
-													console.log(users_list);
-														console.log(users_list);
-															console.log(users_list);
-																console.log(users_list);
+
 }
 
 
