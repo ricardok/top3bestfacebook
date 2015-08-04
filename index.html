@@ -36,7 +36,6 @@
 
 /* --------- User Class --------- */
 
-var users_list = [];
 
 function User(id, name){
 	this.id = id;
@@ -94,6 +93,10 @@ function calculate_tagged_users(users_list){
 }
 */
 
+Array.prototype.clone = function() {
+	return this.slice(0);
+};
+
 function facebook_user_photos(callback){  
         FB.api('me/photos?fields=tags{name,id}&type=uploaded',function(response) {
                 callback(response);
@@ -136,6 +139,9 @@ function calculate_tagged_users(users_list) {
 					}
 				}
 
+			var clone_u = users_list.clone();
+			return clone_u;
+
     });
 
 };
@@ -143,10 +149,11 @@ function calculate_tagged_users(users_list) {
 
 function get_best_friends(){
 	// a function in which calls to another functions will be made in order to calculate points
+	var users_list = [];
 	var fb_user = new User('123','Jawad');
 	users_list.push(fb_user);
 
-	calculate_tagged_users(users_list);
+	users_list = calculate_tagged_users(users_list);
 	console.log("second: "+users_list);
 
 }
