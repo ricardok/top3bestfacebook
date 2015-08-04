@@ -108,53 +108,6 @@ var calculate_tagged_users = function (users_list) {
 };
 
 
-/*
-function facebook_user_photos(callback){  
-        FB.api('me/photos?fields=tags{name,id}&type=uploaded',function(response) {
-                callback(response);
-            });
-}
-
-
-
-var calculate_tagged_users = function (users_list) {
-
-    var fbPhotos = facebook_user_photos(function(response){
-
-        for(var i = 0; i< response.data.length; i++){
-					if(response.data[i].hasOwnProperty('tags')){
-
-						for(var j = 0; j< response.data[i].tags.data.length; j++){
-
-						var user_found = $.grep(users_list, function(e){
-						return e.id == response.data[i].tags.data[j].id;
-						});
-
-						if(user_found.length == 0){
-
-						var fb_user = new User(response.data[i].tags.data[j].id,response.data[i].tags.data[j].name); // create new user
-						fb_user.addPoints(5); // add points to user
-						fb_user.changeToTagged(); // Mark user as tagged so we dont add points to him
-						users_list.push(fb_user);
-
-						}
-						else if(user_found.length == 1){
-
-							if(user_found[0].tagged == 0){
-							user_found[0].addPoints(5); // add points to existing user
-							}
-
-						}
-
-						}
-
-					}
-				}
-
-    });
-
-};
-*/
 
 function get_best_friends(){
 	// a function in which calls to another functions will be made in order to calculate points
@@ -162,7 +115,7 @@ function get_best_friends(){
 	users_list.push(fb_user);
 
 	calculate_tagged_users(users_list);
-	console.log(users_list);
+	console.log("second: "+users_list);
 }
 
 
