@@ -49,12 +49,18 @@ function fb_logout(){
 
 
 function change_UIview(){
-	$('.panel').slideToggle(500).delay(2000).slideToggle(500);
+	$('.panel').slideToggle(500).promise().done(function() {
+
 	$('#loginButton').toggle();
 	$('#logout_btn').toggle();
 	$('.panel-heading').toggleClass('panel-heading-logged-view');
 	$('.panel-heading p').toggle();
 	$('.panel-heading .title').html('Who are my best freinds app!');
+
+	}).delay(1000).slideToggle(500);
+
+
+
 }
 
 
