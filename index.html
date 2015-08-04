@@ -51,11 +51,12 @@ function fb_logout(){
 
 
 function change_UIview(){
+	$('.panel').slideToggle(500).delay(300).slideToggle(500);
 	$('#loginButton').toggle();
 	$('#logout_btn').toggle();
 	$('.panel-heading').toggleClass('panel-heading-logged-view');
 	$('.panel-heading p').toggle();
-	$('.panel-heading .title').html('Welcome to who is my best freinds app!');
+	$('.panel-heading .title').html('Who are my best freinds app!');
 }
 
 
