@@ -41,9 +41,7 @@ $('.panel-heading .title').html('Login using Facebook');
 
 function fb_logout(){
 	FB.logout(function(response) {
-  	alert('You have successfuly logged out!')
-  	//$('#loginButton').show();
-    //$('#logout_btn').hide();
+
     change_UIview();
     change_panelTitle();
 });
@@ -68,8 +66,6 @@ function check_login_status(){
     // the user's ID, a valid access token, a signed
     // request, and the time the access token 
     // and signed request each expire
-    //$('#loginButton').hide();
-    //$('#logout_btn').show();
     change_UIview();
 
     var uid = response.authResponse.userID;
@@ -97,8 +93,7 @@ function check_login_status(){
             console.log('access_token: ' + access_token);
 
             change_UIview();
-            //$('#loginButton').hide();
-    		//$('#logout_btn').show();
+
 
             FB.api('/me', function(response) {
 
