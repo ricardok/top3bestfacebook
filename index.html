@@ -39,28 +39,38 @@ $('.panel-heading .title').html('Login using Facebook');
 }
 
 
-function fb_logout(){
-	FB.logout(function(response) {
-
-    change_UIview();
-    change_panelTitle();
-});
-}
-
-
-function change_UIview(){
-	$('.panel').slideToggle('slow',function(){
-
+function toggle_elements(){
 	$('#loginButton').toggle();
 	$('#logout_btn').toggle();
 	$('.panel-heading').toggleClass('panel-heading-logged-view');
 	$('.panel-heading p').toggle();
 	$('.panel-heading .title').html('Who are my best freinds app!');
+}
 
-	}).delay(1000).slideToggle('slow');
 
+function change_UIview(useToggle){
+
+	if(useToggle === '1'){
+	$('.panel').slideToggle('slow',function(){
+
+	toggle_elements();
+
+	}).delay(500).slideToggle('slow');
+	}
+
+	toggle_elements();
 
 }
+
+
+function fb_logout(){
+	FB.logout(function(response) {
+
+    change_UIview(1);
+    change_panelTitle();
+});
+}
+
 
 
 function check_login_status(){
@@ -71,7 +81,7 @@ function check_login_status(){
     // the user's ID, a valid access token, a signed
     // request, and the time the access token 
     // and signed request each expire
-    change_UIview();
+    change_UIview(0);
 
     var uid = response.authResponse.userID;
     var accessToken = response.authResponse.accessToken;
@@ -97,7 +107,7 @@ function check_login_status(){
             console.log('userid: ' + user_id);
             console.log('access_token: ' + access_token);
 
-            change_UIview();
+            change_UIview(1);
 
 
             FB.api('/me', function(response) {
