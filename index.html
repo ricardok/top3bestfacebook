@@ -99,11 +99,14 @@ function facebook_user_photos(callback){
 }
 
 
+function doNothing(users_list){
+	console.log(users_list);
+}
+
 
 function calculate_tagged_users(users_list) {
 
     var fbPhotos = facebook_user_photos(function(response){
-        console.log(response);
 
         for(var i = 0; i< response.data.length; i++){
 					if(response.data[i].hasOwnProperty('tags')){
@@ -135,7 +138,7 @@ function calculate_tagged_users(users_list) {
 					}
 				}
 
-				return users_list;
+				doNothing(users_list);
 
     });
 
@@ -148,8 +151,8 @@ function get_best_friends(){
 	var fb_user = new User('123','Jawad');
 	users_list.push(fb_user);
 
-	users_list = calculate_tagged_users(users_list);
-	console.log(users_list);
+	calculate_tagged_users(users_list);
+	console.log("second: "+users_list);
 
 }
 
