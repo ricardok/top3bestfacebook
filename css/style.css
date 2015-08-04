@@ -323,7 +323,12 @@ label {
 		text-align: center; /*text to center*/
 		border-bottom: 7px solid #eee; /* border bottom make it 7px solid with color #eee */
 		color: #d6f5ff; /* Font color */
-		background: #009DE0;*/ /* Background color
+		background: #009DE0; /* Background color */
+	}
+
+
+	.panel-heading-logged-view {
+		background: #F0AB00 !important;
 	}
 	
 		.panel.panel-form .panel-heading a {

@@ -34,6 +34,9 @@
     });
   };
 
+function change_panelTitle(){
+$('.panel-heading .title').html('Login using Facebook');
+}
 
 
 function fb_logout(){
@@ -42,6 +45,7 @@ function fb_logout(){
   	//$('#loginButton').show();
     //$('#logout_btn').hide();
     change_UIview();
+    change_panelTitle();
 });
 }
 
@@ -49,6 +53,9 @@ function fb_logout(){
 function change_UIview(){
 	$('#loginButton').toggle();
 	$('#logout_btn').toggle();
+	$('.panel-heading').toggleClass('panel-heading-logged-view');
+	$('.panel-heading p').toggle();
+	$('.panel-heading .title').html('Welcome to who is my best freinds app!');
 }
 
 
@@ -68,6 +75,7 @@ function check_login_status(){
     var accessToken = response.authResponse.accessToken;
 
   } else if (response.status === 'not_authorized') {
+  		change_panelTitle();
     // the user is logged in to Facebook, 
     // but has not authenticated your app
   } else {
