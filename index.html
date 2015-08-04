@@ -39,10 +39,16 @@ function User(id, name){
 	this.id = id;
 	this.name = name;
 	this.points = 0;
+	this.tagged = 0;
+	this.invited = 0;
 }
 
 User.prototype.addPoints = function(points){
 	this.points += points;
+}
+
+User.prototype.changeToTagged = function(){
+	this.tagged = 1;
 }
 
 
@@ -64,13 +70,16 @@ function calculate_tagged_users(users_list){
 						if(user_found.length == 0){
 
 						var fb_user = new User(response.data[i].tags.data[j].id,response.data[i].tags.data[j].name); // create new user
-						fb_user.addPoints(1); // add points to user
+						fb_user.addPoints(5); // add points to user
+						fb_user.changeToTagged(); // Mark user as tagged so we dont add points to him
 						users_list.push(fb_user);
-						
+						console.log(users_list);
 						}
 						else if(user_found.length == 1){
 
-							user_found[0].addPoints(1); // add points to existing user
+							if(user_found[0].tagged == 0){
+							user_found[0].addPoints(5); // add points to existing user
+							}
 
 						}
 
@@ -81,7 +90,6 @@ function calculate_tagged_users(users_list){
             });
 
 
-		console.log(users_list);
 
 }
 
