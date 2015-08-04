@@ -34,6 +34,31 @@
     });
   };
 
+/* --------- User Class --------- */
+function User(id, name){
+	this.id = id;
+	this.name = name;
+	this.points = 0;
+}
+
+User.prototype.addPoints = function(points){
+	this.points += points;
+}
+
+
+/* --------- User Class --------- */
+
+function get_best_friends(){
+	// a function in which calls to another functions will be made in order to calculate points
+	var users_list = [];
+	var fb_user = new User('123','Jawad');
+	users_list.push(fb_user);
+}
+
+
+
+
+
 function change_panelTitle(){
 $('.panel-heading .title').html('Login using Facebook');
 }
@@ -42,6 +67,7 @@ $('.panel-heading .title').html('Login using Facebook');
 function toggle_elements(){
 	$('#loginButton').toggle();
 	$('#logout_btn').toggle();
+	$('#getFriends').toggle();
 	$('.panel-heading').toggleClass('panel-heading-logged-view');
 	$('.panel-heading p').toggle();
 	$('.panel-heading .title').html('Who are my best freinds app!');
@@ -71,6 +97,7 @@ function fb_logout(){
     change_panelTitle();
 });
 }
+
 
 
 
@@ -217,7 +244,10 @@ function check_login_status(){
 										<!-- Login button -->
 										<div class="form-group center-btn">
 											<button id="loginButton" type="button" class="btn btn-primary" onclick="fb_login()"><i class="fa fa-facebook-square fa-3"></i> Login using facebook</button>
-											<span id="fb_name"></span>
+
+											<button id="getFriends" style="display:none;" type="button" class="btn btn-primary" onclick="get_best_friends()">Show best friends!</button>
+
+											<div id="fb_name"></div>
 										</div>
 									</form>
 								</div>
