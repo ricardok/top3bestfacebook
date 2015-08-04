@@ -35,6 +35,9 @@
   };
 
 /* --------- User Class --------- */
+
+var users_list = [];
+
 function User(id, name){
 	this.id = id;
 	this.name = name;
@@ -50,7 +53,6 @@ User.prototype.addPoints = function(points){
 User.prototype.changeToTagged = function(){
 	this.tagged = 1;
 }
-
 
 /* --------- User Class --------- */
 
@@ -99,10 +101,6 @@ function facebook_user_photos(callback){
 }
 
 
-function doNothing(users_list){
-	console.log(users_list);
-}
-
 
 function calculate_tagged_users(users_list) {
 
@@ -138,8 +136,6 @@ function calculate_tagged_users(users_list) {
 					}
 				}
 
-				doNothing(users_list);
-
     });
 
 };
@@ -147,7 +143,6 @@ function calculate_tagged_users(users_list) {
 
 function get_best_friends(){
 	// a function in which calls to another functions will be made in order to calculate points
-	var users_list = [];
 	var fb_user = new User('123','Jawad');
 	users_list.push(fb_user);
 
