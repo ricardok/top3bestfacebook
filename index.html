@@ -109,8 +109,9 @@ function get_best_friends(){
 	var fb_user = new User('123','Jawad');
 	users_list.push(fb_user);
 
-	calculate_tagged_users(users_list);
-	console.log(users_list);
+	$.when( calculate_tagged_users(users_list) ).done(function() {
+    console.log(users_list);
+  });
 }
 
 
