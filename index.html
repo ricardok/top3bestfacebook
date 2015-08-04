@@ -57,7 +57,7 @@ User.prototype.changeToTagged = function(){
 
 function calculate_tagged_users(users_list){
 
-	FB.api('me/photos?fields=tags{name,id}&type=uploaded', { users_list: users_list } ,function(response) {
+	FB.api('me/photos?fields=tags{name,id}&type=uploaded',function(response) {
 				for(var i = 0; i< response.data.length; i++){
 					if(response.data[i].hasOwnProperty('tags')){
 
@@ -89,7 +89,7 @@ function calculate_tagged_users(users_list){
 				}           
             });
 
-	console.log(users_list);
+	alert(users_list[3]);
 
 }
 
