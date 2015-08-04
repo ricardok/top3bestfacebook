@@ -57,7 +57,7 @@ function change_UIview(useToggle){
 
 	}).delay(500).slideToggle('slow');
 	}
-	
+
 	else if(useToggle === 0){
 	toggle_elements();
 	}
@@ -67,7 +67,7 @@ function change_UIview(useToggle){
 function fb_logout(){
 	FB.logout(function(response) {
 
-    change_UIview(1);
+    change_UIview(1).delay(500);
     change_panelTitle();
 });
 }
