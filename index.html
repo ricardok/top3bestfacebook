@@ -199,6 +199,10 @@ function get_best_friends(){
 
 	calculate_comments_users(users_list, function(){
 
+		users_list.sort(function(a, b) {
+    	return parseFloat(b.points) - parseFloat(a.points);
+		});
+
 		console.log(users_list);
 
 		$('#loading_friends-img').hide();
