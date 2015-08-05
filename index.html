@@ -297,8 +297,16 @@ function get_best_friends(){
     	return parseFloat(b.points) - parseFloat(a.points);
 		});
 
-		console.log(users_list);
+		$( ".image-profile" ).each(function(index) {
 
+			FB.api(users_list[index]+'/picture?type=large',function(response) {
+				$(this).find('img').attr("src",response.data.url);
+			});
+				$(this).find('p').html( (index+1).toString() + ': ' + users_list[index].name )
+  		});
+
+
+		$('#results').fadeIn();
 		$('#loading_friends-img').remove();
 
 	});
@@ -485,13 +493,15 @@ function check_login_status(){
 											<div id="results">
 													<div class="image-profile">
 														<img src="images/picture.jpg" alt="..." class="img-circle">
-														<h5><span>A Movie in the Park:Kung Fu Panda</span></h5>
+														<h5><p>Jawad Margieh Qadri</p></h5>
 													</div>
 													<div class="image-profile">
 														<img src="images/picture.jpg" alt="..." class="img-circle">
+														<h5><p>Jawad Margieh</p></h5>
 													</div>
 													<div class="image-profile">
 														<img src="images/picture.jpg" alt="..." class="img-circle">
+														<h5><p>Jawad Margieh</p></h5>
 													</div>
 											</div>
 
