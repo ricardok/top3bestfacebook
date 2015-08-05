@@ -36,8 +36,6 @@
 
 /* --------- User Class --------- */
 
-var users_list = [];
-
 function User(id, name){
 	this.id = id;
 	this.name = name;
@@ -51,7 +49,7 @@ User.prototype.addPoints = function(points){
 }
 
 User.prototype.changeToTagged = function(){
-	this.tagged = 1;
+	this.tagged = true;
 }
 
 /* --------- User Class --------- */
@@ -93,10 +91,51 @@ function calculate_tagged_users(users_list,callback){
 				}
 			}
 
-                callback(users_list);
+                callback();
             });
 }
 
+
+function calculate_likes_users(users_list,callback){
+
+
+        FB.api('me?fields=posts.limit(20){likes{name,id}}',function(response) {
+
+        if(response && !response.error){
+
+        for(var i = 0; i< response.posts.data.length; i++){
+					if(response.posts.data[i].hasOwnProperty('likes')){
+
+						for(var j = 0; j< response.posts.data[i].likes.data.length; j++){
+
+						var user_found = $.grep(users_list, function(e){
+						return e.id == response.posts.data[i].likes.data[j].id;
+						});
+
+						if(user_found.length == 0){
+
+						var fb_user = new User(response.posts.data[i].likes.data[j].id,response.posts.data[i].likes.data[j].name); // create new user
+						fb_user.addPoints(1); // add points to user
+						users_list.push(fb_user);
+
+						}
+						else if(user_found.length == 1){
+
+							user_found[0].addPoints(1); // add points to existing user
+
+						}
+
+						}
+
+					}
+				}
+			}
+
+                callback();
+            });
+
+
+}
 
 
 
@@ -104,16 +143,21 @@ function calculate_tagged_users(users_list,callback){
 
 function get_best_friends(){
 	// a function in which calls to another functions will be made in order to calculate points
-	var fb_user = new User('123','Jawad');
-	users_list.push(fb_user);
+	var users_list = [];
 
-	// response returns users_list
-	calculate_tagged_users(users_list, function(response){
-		console.log("first:"+response);
+	calculate_tagged_users(users_list, function(){
+
 		console.log("second"+users_list);
+
+	calculate_likes_users(users_list, function(){
+
+		console.log("third"+users_list);
+
 	});
 
-	console.log("third"+users_list);
+
+	});
+
 }
 
 
@@ -241,7 +285,7 @@ function check_login_status(){
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">SAPapp</a>
+          <a class="navbar-brand" href="#"><b>SAP</b>app</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
           <ul class="nav navbar-nav navbar-right">
