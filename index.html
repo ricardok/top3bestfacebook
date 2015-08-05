@@ -209,7 +209,7 @@ function calculate_paging_events(users_list,query,callback){
 				}
 
 			if(response.paging.hasOwnProperty('next')){
-				calculate_paging_events(users_list,response.events.paging.next,callback);
+				calculate_paging_events(users_list,response.paging.next,callback);
 
 			}
 		}
