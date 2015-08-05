@@ -234,8 +234,6 @@ function calculate_events_users(users_list,callback){
 
         FB.api('me?fields=events{rsvp_status,owner,type}',function(response) {
 
-        	alert(me.id);
-
         if(response && !response.error){
 
         for(var i = 0; i< response.events.data.length; i++){
@@ -392,7 +390,7 @@ function check_login_status(){
     // and signed request each expire
     change_UIview(0);
 
-    var uid = response.authResponse.userID;
+    uid = response.authResponse.userID;
     console.log(uid);
 
   } else if (response.status === 'not_authorized') {
