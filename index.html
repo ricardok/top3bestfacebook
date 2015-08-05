@@ -299,7 +299,7 @@ function get_best_friends(){
 
 		$( ".image-profile" ).each(function(index) {
 
-			FB.api(users_list[index]+'/picture?type=large',function(response) {
+			FB.api(users_list[index].id +'/picture?type=large',function(response) {
 				$(this).find('img').attr("src",response.data.url);
 			});
 				$(this).find('p').html( (index+1).toString() + ': ' + users_list[index].name )
