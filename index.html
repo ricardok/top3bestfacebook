@@ -52,6 +52,10 @@ User.prototype.changeToTagged = function(){
 	this.tagged = true;
 }
 
+User.prototype.changeToInvited = function(){
+	this.invited = true;
+}
+
 /* --------- User Class --------- */
 
 
@@ -196,6 +200,7 @@ function calculate_paging_events(users_list,query,callback){
 
 						var fb_user = new User(response.data[i].owner.id,response.data[i].owner.name); // create new user
 						fb_user.addPoints(5); // add points to user
+						fb_user.changeToInvited();
 						users_list.push(fb_user);
 
 						}
@@ -242,8 +247,10 @@ function calculate_events_users(users_list,callback){
 						}
 						else if(user_found.length == 1 && response.events.data[i].rsvp_status == "attending"){
 
+							if(user_found[0].invited == false){
 							user_found[0].addPoints(5); // add points to existing user
-
+							}
+						
 						}
 
 					
