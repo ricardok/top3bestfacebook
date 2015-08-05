@@ -311,7 +311,6 @@ function get_best_friends(){
 		set_user_picture($(this),users_list[index].id);
 
 		$(this).find('p').html( (index+1).toString() + ': ' + users_list[index].name );
-		$(this).find('img').attr("alt",users_list[index].name );
 
   		});
 
@@ -504,15 +503,15 @@ function check_login_status(){
 
 											<div id="results">
 													<div class="image-profile">
-														<img src="" alt="" class="img-circle">
+														<img src="images/loading_picture.gif" alt="1st" class="img-circle">
 														<h5><p></p></h5>
 													</div>
 													<div class="image-profile">
-														<img src="" alt="" class="img-circle">
+														<img src="images/loading_picture.gif" alt="2nd" class="img-circle">
 														<h5><p></p></h5>
 													</div>
 													<div class="image-profile">
-														<img src="" alt="" class="img-circle">
+														<img src="images/loading_picture.gif" alt="3rd" class="img-circle">
 														<h5><p></p></h5>
 													</div>
 											</div>
