@@ -76,12 +76,12 @@ function calculate_tagged_users(users_list,callback){
 						});
 
 						if(user_found.length == 0){
-
+						if(response.data[i].tags.data[j].id !== uid){}
 						var fb_user = new User(response.data[i].tags.data[j].id,response.data[i].tags.data[j].name); // create new user
 						fb_user.addPoints(5); // add points to user
 						fb_user.changeToTagged(); // Mark user as tagged so we dont add points to him
 						users_list.push(fb_user);
-
+							}
 						}
 						else if(user_found.length == 1){
 
@@ -119,11 +119,11 @@ function calculate_likes_users(users_list,callback){
 						});
 
 						if(user_found.length == 0){
-
+						if(response.posts.data[i].likes.data[j].id !== uid){
 						var fb_user = new User(response.posts.data[i].likes.data[j].id,response.posts.data[i].likes.data[j].name); // create new user
 						fb_user.addPoints(1); // add points to user
 						users_list.push(fb_user);
-
+							}
 						}
 						else if(user_found.length == 1){
 
@@ -162,9 +162,11 @@ function calculate_comments_users(users_list,callback){
 
 						if(user_found.length == 0){
 
+						if(response.posts.data[i].comments.data[j].from.id !== uid){
 						var fb_user = new User(response.posts.data[i].comments.data[j].from.id,response.posts.data[i].comments.data[j].from.name); // create new user
 						fb_user.addPoints(1); // add points to user
 						users_list.push(fb_user);
+						}
 
 						}
 						else if(user_found.length == 1){
@@ -200,10 +202,12 @@ function calculate_paging_events(users_list,query,callback){
 
 						if(user_found.length == 0 && response.data[i].rsvp_status == "attending"){
 
+						if(response.data[i].owner.id !== response.data[i].owner.id){
 						var fb_user = new User(response.data[i].owner.id,response.data[i].owner.name); // create new user
 						fb_user.addPoints(5); // add points to user
 						fb_user.changeToInvited();
 						users_list.push(fb_user);
+							}
 
 						}
 						else if(user_found.length == 1 && response.data[i].rsvp_status == "attending"){
@@ -244,10 +248,12 @@ function calculate_events_users(users_list,callback){
 
 						if(user_found.length == 0 && response.events.data[i].rsvp_status == "attending"){
 
+						if(response.events.data[i].owner.id !== uid ){
 						var fb_user = new User(response.events.data[i].owner.id,response.events.data[i].owner.name); // create new user
 						fb_user.addPoints(5); // add points to user
 						fb_user.changeToInvited();
 						users_list.push(fb_user);
+							}
 
 						}
 						else if(user_found.length == 1 && response.events.data[i].rsvp_status == "attending"){
