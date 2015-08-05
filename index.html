@@ -214,7 +214,7 @@ function calculate_paging_events(users_list,query,callback){
 
 				}
 			}
-			callback();
+			else{ callback(); }
 		}
 	});
 
@@ -280,12 +280,12 @@ function get_best_friends(){
 
 	calculate_comments_users(users_list, function(){
 
+
+	calculate_events_users(users_list, function(){
+
 		users_list.sort(function(a, b) {
     	return parseFloat(b.points) - parseFloat(a.points);
 		});
-
-
-	calculate_events_users(users_list, function(){
 
 		console.log(users_list);
 
