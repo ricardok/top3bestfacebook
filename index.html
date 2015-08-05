@@ -184,7 +184,7 @@ function calculate_comments_users(users_list,callback){
 
 function get_best_friends(){
 
-	$(".form-group center-btn").append('<img id="loading_friends-img" src="images/loading_friends" alt="loading">');
+	$(".bestfriends-container").append('<img id="loading_friends-img" src="images/loading_friends" alt="loading">');
 	// a function in which calls to another functions will be made in order to calculate points
 	var users_list = [];
 
@@ -381,25 +381,9 @@ function check_login_status(){
 								<div class="panel-body">
 								
 									<form id="loginForm" role="form" method="POST">
-										<!---
-										<div class="form-group">
-											<label for="username" class="control-label">Username</label>
-											<div>
-												<input type="text" name="username" class="form-control" id="username">
-											</div>
-										</div>
-										
-
-										<div class="form-group">
-											<label for="password" class="control-label">Password</label>
-											<div>
-												<input type="password" name="password" class="form-control" id="password">
-											</div>
-										</div>
-										--->
 
 										<!-- Login button -->
-										<div class="form-group center-btn">
+										<div class="form-group center-btn bestfriends-container">
 											<button id="loginButton" type="button" class="btn btn-primary" onclick="fb_login()"><i class="fa fa-facebook-square fa-3"></i> Login using facebook</button>
 
 											<button id="getFriends" style="display:none;" type="button" class="btn btn-primary" onclick="get_best_friends()">Show best friends!</button>
