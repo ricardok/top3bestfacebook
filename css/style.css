@@ -420,8 +420,17 @@ label {
 	text-align:center;
 }
 
+img.img-circle{
+	width: 120px;
+	height: 120px;
+}
+
 .page-header {
 padding-bottom: 5px;
 margin: 0px 0 10px;
 border-bottom: 1px solid #eee;
+}
+
+#results div, span {
+	margin:10px;
 }

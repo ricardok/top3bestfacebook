@@ -395,13 +395,6 @@ function check_login_status(){
 
             change_UIview(1);
 
-
-            FB.api('/me', function(response) {
-
-                document.getElementById('fb_name').innerHTML = 'name: ' + response.name;
-          // you can store this data into your database             
-            });
-
         } else {
             //user hit cancel button
             console.log('User cancelled login or did not fully authorize.');
@@ -489,7 +482,11 @@ function check_login_status(){
 
 											<button id="getFriends" style="display:none;" type="button" class="btn btn-primary" onclick="get_best_friends()">Show best friends!</button>
 
-											<div id="fb_name"></div>
+											<div id="results">
+													<span><img src="images/picture.jpg" alt="..." class="img-circle"></span>
+													<span><img src="images/picture.jpg" alt="..." class="img-circle"></span>
+													<span><img src="images/picture.jpg" alt="..." class="img-circle"></span>
+											</div>
 										</div>
 									</form>
 								</div>
