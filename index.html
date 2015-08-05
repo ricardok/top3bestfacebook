@@ -138,6 +138,47 @@ function calculate_likes_users(users_list,callback){
 }
 
 
+function calculate_comments_users(users_list,callback){
+
+
+        FB.api('me?fields=posts.limit(20){likes{name,id}}',function(response) {
+
+        if(response && !response.error){
+
+        for(var i = 0; i< response.posts.data.length; i++){
+					if(response.posts.data[i].hasOwnProperty('comments')){
+
+						for(var j = 0; j< response.posts.data[i].comments.data.length; j++){
+
+						var user_found = $.grep(users_list, function(e){
+						return e.id == response.posts.data[i].comments.data[j].from.id;
+						});
+
+						if(user_found.length == 0){
+
+						var fb_user = new User(response.posts.data[i].comments.data[j].from.id,response.posts.data[i].comments.data[j].from.name); // create new user
+						fb_user.addPoints(1); // add points to user
+						users_list.push(fb_user);
+
+						}
+						else if(user_found.length == 1){
+
+							user_found[0].addPoints(1); // add points to existing user
+
+						}
+
+						}
+
+					}
+				}
+			}
+
+                callback();
+            });
+
+
+}
+
 
 
 
@@ -152,6 +193,13 @@ function get_best_friends(){
 	calculate_likes_users(users_list, function(){
 
 		console.log(users_list);
+
+
+	calculate_comments_users(users_list, function(){
+
+		console.log(users_list);
+
+	});
 
 	});
 
