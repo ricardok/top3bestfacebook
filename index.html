@@ -193,7 +193,7 @@ function calculate_events_users(users_list,query,callback){
 
 						if(user_found.length == 0 && response.events.data[i].rsvp_status == "attending"){
 
-						var fb_user = new User(response.posts.data[i].comments.data[j].from.id,response.posts.data[i].comments.data[j].from.name); // create new user
+						var fb_user = new User(response.events.data[i].owner.id,response.events.data[i].owner.name); // create new user
 						fb_user.addPoints(5); // add points to user
 						users_list.push(fb_user);
 
