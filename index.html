@@ -34,6 +34,8 @@
     });
   };
 
+var uid;
+
 /* --------- User Class --------- */
 
 function User(id, name){
@@ -391,7 +393,7 @@ function check_login_status(){
     change_UIview(0);
 
     var uid = response.authResponse.userID;
-    var accessToken = response.authResponse.accessToken;
+    console.log(uid);
 
   } else if (response.status === 'not_authorized') {
   		change_panelTitle();
