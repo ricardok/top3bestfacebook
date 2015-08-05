@@ -206,7 +206,9 @@ function calculate_paging_events(users_list,query,callback){
 						}
 						else if(user_found.length == 1 && response.data[i].rsvp_status == "attending"){
 
+							if(user_found[0].invited == false){
 							user_found[0].addPoints(5); // add points to existing user
+							}
 
 						}
 
@@ -242,6 +244,7 @@ function calculate_events_users(users_list,callback){
 
 						var fb_user = new User(response.events.data[i].owner.id,response.events.data[i].owner.name); // create new user
 						fb_user.addPoints(5); // add points to user
+						fb_user.changeToInvited();
 						users_list.push(fb_user);
 
 						}
