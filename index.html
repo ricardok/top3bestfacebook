@@ -272,6 +272,12 @@ function calculate_events_users(users_list,callback){
 }
 
 
+function get_user_picture(id,callback){
+				FB.api(id +'/picture?type=large',function(response) {
+					callback(response.data.url);
+			});
+}
+
 
 function get_best_friends(){
 
@@ -293,22 +299,30 @@ function get_best_friends(){
 
 	calculate_events_users(users_list, function(){
 
+
 		users_list.sort(function(a, b) {
     	return parseFloat(b.points) - parseFloat(a.points);
 		});
 
+
+
 		$( ".image-profile" ).each(function(index) {
 
-			FB.api(users_list[index].id +'/picture?type=large',function(response) {
-				$(this).find('img').attr("src",response.data.url);
-				alert(response.data.url);
-			});
-				$(this).find('p').html( (index+1).toString() + ': ' + users_list[index].name )
+		get_user_picture(users_list[index], function(picture){
+
+			$(this).find('img').attr("src",picture);
+			alert(picture);
+
+		});
+
+		$(this).find('p').html( (index+1).toString() + ': ' + users_list[index].name )
+  		}).done(function(){
+
+  		$('#results').fadeIn();
+		$('#loading_friends-img').remove();
+
   		});
 
-
-		$('#results').fadeIn();
-		$('#loading_friends-img').remove();
 
 	});
 
