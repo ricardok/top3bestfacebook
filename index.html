@@ -76,7 +76,7 @@ function calculate_tagged_users(users_list,callback){
 						});
 
 						if(user_found.length == 0){
-						if(response.data[i].tags.data[j].id !== uid){}
+						if(response.data[i].tags.data[j].id !== uid){
 						var fb_user = new User(response.data[i].tags.data[j].id,response.data[i].tags.data[j].name); // create new user
 						fb_user.addPoints(5); // add points to user
 						fb_user.changeToTagged(); // Mark user as tagged so we dont add points to him
