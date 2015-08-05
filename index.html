@@ -310,19 +310,20 @@ function get_best_friends(){
 
 		get_user_picture(users_list[index].id, function(picture){
 
+			alert($(this).find('img').attr("src"));
 			$(this).find('img').attr("src",picture);
 			alert(picture);
 
 		});
 
 		$(this).find('p').html( (index+1).toString() + ': ' + users_list[index].name );
-		
-  		}).promise().done(function(){
+
+  		});
 
   		$('#results').fadeIn();
 		$('#loading_friends-img').remove();
 
-  		});
+
 
 
 	});
