@@ -275,7 +275,7 @@ function calculate_events_users(users_list,callback){
 
 function get_best_friends(){
 
-	$(".bestfriends-container").append('<img id="loading_friends-img" src="images/loading_friends.gif" alt="loading">');
+	$(".bestfriends-container").append('<div id="loading_friends-img"><img src="images/loading_friends.gif" alt="loading"></div>');
 	// a function in which calls to another functions will be made in order to calculate points
 	var users_list = [];
 
@@ -301,6 +301,7 @@ function get_best_friends(){
 
 			FB.api(users_list[index].id +'/picture?type=large',function(response) {
 				$(this).find('img').attr("src",response.data.url);
+				alert(response.data.url);
 			});
 				$(this).find('p').html( (index+1).toString() + ': ' + users_list[index].name )
   		});
