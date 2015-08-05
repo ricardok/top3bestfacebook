@@ -272,9 +272,9 @@ function calculate_events_users(users_list,callback){
 }
 
 
-function get_user_picture(id,callback){
+function set_user_picture(object,id){
 				FB.api(id +'/picture?type=large',function(response) {
-					callback(response.data.url);
+					object.find('img').attr("src",response.data.url);
 			});
 }
 
@@ -308,13 +308,7 @@ function get_best_friends(){
 
 		$( ".image-profile" ).each(function(index) {
 
-		get_user_picture(users_list[index].id, function(picture){
-
-			alert($(this).find('img').attr("src"));
-			$(this).find('img').attr("src",picture);
-			alert(picture);
-
-		});
+		set_user_picture($(this),users_list[index].id);
 
 		$(this).find('p').html( (index+1).toString() + ': ' + users_list[index].name );
 
