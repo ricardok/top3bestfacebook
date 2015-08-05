@@ -420,15 +420,36 @@ label {
 	text-align:center;
 }
 
+.page-header {
+padding-bottom: 5px;
+margin: 0px 0 10px;
+border-bottom: 1px solid #eee;
+}
+
+
 img.img-circle{
 	width: 120px;
 	height: 120px;
 }
 
-.page-header {
-padding-bottom: 5px;
-margin: 0px 0 10px;
-border-bottom: 1px solid #eee;
+.image-profile{
+position: relative; 
+}
+
+.image-profile h5{
+   position: absolute; 
+   top: 40px; 
+   left: 0; 
+   width: 100%; 
+}
+
+.image-profile h5 { 
+   color: white; 
+   font: bold 24px/45px Helvetica, Sans-Serif; 
+   letter-spacing: -1px;  
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 10px; 
 }
 
 #results span {
