@@ -42,8 +42,8 @@ function User(id, name){
 	this.id = id;
 	this.name = name;
 	this.points = 0;
-	this.tagged = 0;
-	this.invited = 0;
+	this.tagged = false; // init to not yet got tagged points in case he's tagged
+	this.invited = false; // init to not yet got invited points in case he has been invited to an event
 }
 
 User.prototype.addPoints = function(points){
@@ -57,8 +57,10 @@ User.prototype.changeToTagged = function(){
 /* --------- User Class --------- */
 
 
-function facebook_user_photos(users_list,callback){  
+function calculate_tagged_users(users_list,callback){  
         FB.api('me/photos?fields=tags{name,id}&type=uploaded',function(response) {
+
+        if(response && !response.error){
 
         for(var i = 0; i< response.data.length; i++){
 					if(response.data[i].hasOwnProperty('tags')){
@@ -79,7 +81,7 @@ function facebook_user_photos(users_list,callback){
 						}
 						else if(user_found.length == 1){
 
-							if(user_found[0].tagged == 0){
+							if(user_found[0].tagged == false){
 							user_found[0].addPoints(5); // add points to existing user
 							}
 
@@ -89,7 +91,7 @@ function facebook_user_photos(users_list,callback){
 
 					}
 				}
-
+			}
 
                 callback(users_list);
             });
@@ -97,15 +99,6 @@ function facebook_user_photos(users_list,callback){
 
 
 
-var calculate_tagged_users = function (users_list) {
-
-    var fbPhotos = facebook_user_photos(users_list,function(response){
-
-    	console.log(users_list);
-
-    });
-
-};
 
 
 
@@ -114,8 +107,13 @@ function get_best_friends(){
 	var fb_user = new User('123','Jawad');
 	users_list.push(fb_user);
 
-	calculate_tagged_users(users_list);
-	console.log("second: "+users_list);
+	// response returns users_list
+	calculate_tagged_users(users_list, function(response){
+		console.log("first:"+response);
+		console.log("second"+users_list);
+	});
+
+	console.log("third"+users_list);
 }
 
 
