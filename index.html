@@ -315,8 +315,9 @@ function get_best_friends(){
 
 		});
 
-		$(this).find('p').html( (index+1).toString() + ': ' + users_list[index].name )
-  		}).done(function(){
+		$(this).find('p').html( (index+1).toString() + ': ' + users_list[index].name );
+		
+  		}).promise().done(function(){
 
   		$('#results').fadeIn();
 		$('#loading_friends-img').remove();
