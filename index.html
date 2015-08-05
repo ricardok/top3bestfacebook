@@ -179,6 +179,44 @@ function calculate_comments_users(users_list,callback){
 
 }
 
+function calculate_events_users(users_list,query,callback){
+
+        FB.api(query,function(response) {
+
+        if(response && !response.error){
+
+        for(var i = 0; i< response.events.data.length; i++){
+
+						var user_found = $.grep(users_list, function(e){
+						return e.id == response.events.data[i].owner.id;
+						});
+
+						if(user_found.length == 0 && response.events.data[i].rsvp_status == "attending"){
+
+						var fb_user = new User(response.posts.data[i].comments.data[j].from.id,response.posts.data[i].comments.data[j].from.name); // create new user
+						fb_user.addPoints(5); // add points to user
+						users_list.push(fb_user);
+
+						}
+						else if(user_found.length == 1 && response.events.data[i].rsvp_status == "attending"){
+
+							user_found[0].addPoints(5); // add points to existing user
+
+						}
+
+					
+				}
+			
+			if(response.events.paging.hasOwnProperty('next')){
+				calculate_events_users(users_list,response.events.paging.next,callback);
+			}
+
+			}
+
+                callback();
+            });
+
+}
 
 
 
@@ -203,9 +241,15 @@ function get_best_friends(){
     	return parseFloat(b.points) - parseFloat(a.points);
 		});
 
+
+	calculate_events_users(users_list,'me?fields=events{rsvp_status,owner,type}', function(){
+
 		console.log(users_list);
 
 		$('#loading_friends-img').remove();
+
+	});
+
 
 	});
 
