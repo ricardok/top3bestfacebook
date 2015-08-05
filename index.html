@@ -308,7 +308,7 @@ function get_best_friends(){
 
 		$( ".image-profile" ).each(function(index) {
 
-		get_user_picture(users_list[index], function(picture){
+		get_user_picture(users_list[index].id, function(picture){
 
 			$(this).find('img').attr("src",picture);
 			alert(picture);
