@@ -183,6 +183,8 @@ function calculate_comments_users(users_list,callback){
 
 
 function get_best_friends(){
+
+	$(".form-group center-btn").append('<img id="loading_friends-img" src="images/loading_friends" alt="loading">');
 	// a function in which calls to another functions will be made in order to calculate points
 	var users_list = [];
 
@@ -198,6 +200,8 @@ function get_best_friends(){
 	calculate_comments_users(users_list, function(){
 
 		console.log(users_list);
+
+		$('#loading_friends-img').hide();
 
 	});
 
