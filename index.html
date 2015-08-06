@@ -34,6 +34,7 @@
     });
   };
 
+// global uid of logged in user
 var uid;
 
 /* --------- User Class --------- */
@@ -61,6 +62,7 @@ User.prototype.changeToInvited = function(){
 /* --------- User Class --------- */
 
 
+// calculate points of users who were tagged on one or more photo of logged user.
 function calculate_tagged_users(users_list,callback){  
         FB.api('me/photos?fields=tags{name,id}&type=uploaded',function(response) {
 
@@ -102,6 +104,7 @@ function calculate_tagged_users(users_list,callback){
 }
 
 
+// calculate points of users who liked last 20 posts
 function calculate_likes_users(users_list,callback){
 
 
@@ -143,7 +146,7 @@ function calculate_likes_users(users_list,callback){
 
 }
 
-
+// calculate points of users who commented on the last 20 posts
 function calculate_comments_users(users_list,callback){
 
 
@@ -187,6 +190,7 @@ function calculate_comments_users(users_list,callback){
 
 }
 
+// a recursive function called as long as response has paging property in order to get next response of events
 function calculate_paging_events(users_list,query,callback){
 
 
@@ -234,6 +238,7 @@ function calculate_paging_events(users_list,query,callback){
 }
 
 
+// calculate friends points whom I attended their event
 function calculate_events_users(users_list,callback){
 
         FB.api('me?fields=events{rsvp_status,owner,type}',function(response) {
@@ -242,6 +247,7 @@ function calculate_events_users(users_list,callback){
 
         for(var i = 0; i< response.events.data.length; i++){
 
+        				// find user in user_list by id
 						var user_found = $.grep(users_list, function(e){
 						return e.id == response.events.data[i].owner.id;
 						});
@@ -280,6 +286,7 @@ function calculate_events_users(users_list,callback){
 }
 
 
+// gets and sets user profile picture
 function set_user_picture(object,id){
 				FB.api(id +'/picture?type=large',function(response) {
 					object.find('img').attr("src",response.data.url);
@@ -287,10 +294,12 @@ function set_user_picture(object,id){
 }
 
 
+// get best friends function
 function get_best_friends(){
 
+	// show loading image
 	$(".bestfriends-container").append('<div id="loading_friends-img"><img src="images/loading_friends.gif" alt="loading"></div>');
-	// a function in which calls to another functions will be made in order to calculate points
+
 	var users_list = [];
 
 	calculate_tagged_users(users_list, function(){
@@ -322,7 +331,7 @@ function get_best_friends(){
 
   		});
 
-  		$('#results').fadeIn();
+  		$('#results').show();
 		$('#loading_friends-img').remove();
 
 
@@ -378,8 +387,9 @@ function change_UIview(useToggle){
 function fb_logout(){
 	FB.logout(function(response) {
 
-    change_UIview(1);
+    change_UIview(1); // change to loggedout view
     change_panelTitle();
+    $('#results').hide(); //hide result
 });
 }
 
@@ -414,12 +424,7 @@ function check_login_status(){
 
         if (response.authResponse) {
             console.log('Welcome!  Fetching your information.... ');
-            //console.log(response); // dump complete info
-            access_token = response.authResponse.accessToken; //get access token
-            user_id = response.authResponse.userID; //get FB UID
-            console.log('userid: ' + user_id);
-            console.log('access_token: ' + access_token);
-
+            uid = response.authResponse.userID; //get FB UID
             change_UIview(1);
 
         } else {
