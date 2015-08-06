@@ -338,7 +338,8 @@ function change_UIview(useToggle){
     $('.panel').slideToggle('slow',function(){
 
     toggle_elements();
-
+    $('#results').hide(); //hide result
+    
     }).delay(500).slideToggle('slow');
     }
 
@@ -353,7 +354,6 @@ function fb_logout(){
 
     change_UIview(1); // change to loggedout view
     change_panelTitle();
-    $('#results').hide(); //hide result
 });
 }
 
