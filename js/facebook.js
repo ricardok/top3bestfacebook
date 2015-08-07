@@ -247,6 +247,8 @@ function calculate_events_users(users_list,callback){
             }
         }
 
+            callback();
+
             }
 
             });
