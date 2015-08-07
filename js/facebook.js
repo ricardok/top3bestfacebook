@@ -239,11 +239,13 @@ function calculate_events_users(users_list,callback){
                 }
                     }
 
+                    if(response.hasOwnProperty('events')){
             if(response.events.paging.hasOwnProperty('next')){
                 calculate_paging_events(users_list,response.events.paging.next,function(){
                     callback();
                 });
             }
+        }
 
             }
 
