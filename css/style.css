@@ -192,7 +192,7 @@ h3 {
 
 .content {
 	margin-bottom: 50px;
-	padding: 100px 0;
+	padding: 180px 0;
 }
 
 a,
@@ -268,6 +268,7 @@ label {
 	-webkit-transition:	all 0.3s;
 	-moz-transition:	all 0.3s;
 	transition:			all 0.3s;
+	margin-bottom:20px;
 }
 
 .btn:hover {
@@ -323,7 +324,12 @@ label {
 		text-align: center; /*text to center*/
 		border-bottom: 7px solid #eee; /* border bottom make it 7px solid with color #eee */
 		color: #d6f5ff; /* Font color */
-		background: #009DE0;*/ /* Background color
+		background: #009DE0; /* Background color */
+	}
+
+
+	.panel-heading-logged-view {
+		background: #F0AB00 !important;
 	}
 	
 		.panel.panel-form .panel-heading a {
@@ -337,6 +343,7 @@ label {
 		
 		.panel.panel-form .panel-heading p {
 			margin: 0;
+			font-size:18px;
 		}
 	
 		/* customizing title inside panel-heading */
@@ -409,9 +416,50 @@ label {
 	margin-top:15px;
 }
 
+.center-btn{
+	text-align:center;
+}
 
 .page-header {
 padding-bottom: 5px;
 margin: 0px 0 10px;
 border-bottom: 1px solid #eee;
+}
+
+
+img.img-circle{
+	width: 120px;
+	height: 120px;
+}
+
+img.img-rounded{
+	width: 140px;
+	height: auto;
+}
+
+.image-profile{
+position: relative; 
+}
+
+.image-profile h5{
+   position: relative; 
+   top:5px;
+}
+
+.image-profile h5 p { 
+   color: white; 
+   background: rgb(0, 0, 0); /* fallback color */
+   background: rgba(0, 0, 0, 0.7);
+   padding: 10px; 
+   border-radius: 5px;
+   width: 140px;
+}
+
+#results div{
+	display:inline-block;
+	margin:5px;
+}
+
+#results{
+	display:none;
 }
