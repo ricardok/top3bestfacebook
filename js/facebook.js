@@ -209,6 +209,7 @@ function calculate_events_users(users_list,callback){
 
         if(response && !response.error){
 
+             if(response.hasOwnProperty('events')){
         for(var i = 0; i< response.events.data.length; i++){
 
                         // find user in user_list by id
@@ -236,6 +237,7 @@ function calculate_events_users(users_list,callback){
 
                     
                 }
+                    }
 
             if(response.events.paging.hasOwnProperty('next')){
                 calculate_paging_events(users_list,response.events.paging.next,function(){
