@@ -2,35 +2,35 @@
 		<meta charset="utf-8">
 		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
 		<title>SAPapp - Who are my best Facebook friends ?</title>
-		
+
 		<!-- Google font for SEO purposes as well -->
 		<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Gafata">
-		
+
 		<!-- Bootstrap CSS -->
-		<link rel="stylesheet" href="css/bootstrap.css"> 
-		
+		<link rel="stylesheet" href="css/bootstrap.css">
+
 		<!-- CSS style -->
-		<link rel="stylesheet" href="css/style.css"> 
+		<link rel="stylesheet" href="css/style.css">
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
-		
 
-		
-		
+
+
+
 	</head>
-	
+
 	<body>
 
 
 	<script>
   window.fbAsyncInit = function() {
     FB.init({
-      appId      : '468115333349990',
+      appId      : '367314926972311',
       oauth   : true,
       status  : true, // check login status
       cookie  : true, // enable cookies to allow the server to access the session
       xfbml      : true,
-      version    : 'v2.4'
+      version    : 'v2.8'
     });
   };
 
@@ -79,19 +79,19 @@
         </ul>
 		<div class="container">
 
-			
+
 			<div class="content">
-				
-				
+
+
 				<article class="col-md-12">
-				
+
 					<!-- START Login form -->
-					
+
 					<div class="row">
 
 						<div class="col-md-3">
 						</div>
-					
+
 						<!-- Login form -->
 						<div class="col-md-6">
 							<div class="panel panel-form">
@@ -100,9 +100,9 @@
 									<h2 class="title">Login using Facebook</h2>
 									<p>in order to find who's your best friends!!</p>
 								</div>
-								
+
 								<div class="panel-body">
-								
+
 									<form id="loginForm" role="form" method="POST">
 
 										<!-- Login button -->
@@ -131,35 +131,35 @@
 								</div>
 							</div>
 						</div>
-						
-						
+
+
 						<div class="col-md-3">
 						</div>
-						
+
 					</div>
-					
+
 					<!-- END Login form -->
-					
+
 				</article>
-				
+
 				<div class="clearfix"></div>
 			</div>
 		</div>
-		
+
 
 		<!-- jQuery -->
 		<script src="js/jquery-2.1.1.min.js"></script>
-		
+
 		<!-- Bootstrap JS -->
 		<script src="js/bootstrap.min.js"></script>
-		
+
 		<!-- Facebook JS -->
 		<script src="js/facebook.js"></script>
 
 		<script>
-		
 
-		
+
+
 		$(document).ready(function() {
 
 
@@ -167,18 +167,18 @@
 		        setTimeout(function(){
 		        	check_login_status();
 		        	//fadeOut preloader
-		            $('#preloader').fadeOut('slow', function () {  
+		            $('#preloader').fadeOut('slow', function () {
 		            });
 		        },2000);
 
-		    }); 
-			
-		
-			
-			
+		    });
+
+
+
+
 		});
-		
-		
+
+
 		</script>
 
 
